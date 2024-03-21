@@ -4,6 +4,9 @@ import model.Usuario;
 import service.UsuarioService;
 import view.UsuarioView;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class UsuarioController {
     private UsuarioService usuarioService;
     private UsuarioView usuarioView;
@@ -21,49 +24,23 @@ public class UsuarioController {
     private void adicionarUsuario() {
         try {
             Usuario novoUsuario = usuarioView.obterNovoUsuario();
-            validarUsuario(novoUsuario);
+            ValidacaoController.validarLogin(novoUsuario.getLogin());
+            ValidacaoController.validarSenha(novoUsuario.getSenha());
             usuarioService.adicionarUsuario(novoUsuario);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao adicionar usuário: " + e.getMessage());
-        }
-    }
-
-    private void validarUsuario(Usuario usuario) {
-        validarLogin(usuario.getLogin());
-        validarSenha(usuario.getSenha());
-    }
-
-    private void validarLogin(String login) {
-        if (login.isEmpty()) {
-            throw new IllegalArgumentException("O login não pode ser vazio.");
-        }
-        if (login.length() > 12) {
-            throw new IllegalArgumentException("O login não pode ter mais de 12 caracteres.");
-        }
-        if (login.matches(".*\\d.*")) {
-            throw new IllegalArgumentException("O login não pode conter números.");
-        }
-    }
-
-    private void validarSenha(String senha) {
-        if (senha.length() < 8 || senha.length() > 20) {
-            throw new IllegalArgumentException("A senha deve ter entre 8 e 20 caracteres.");
-        }
-        if (!senha.matches(".*[a-zA-Z].*") || !senha.matches(".*\\d.*")) {
-            throw new IllegalArgumentException("A senha deve conter letras e números.");
-        }
-        int contadorNumeros = 0;
-        for (char c : senha.toCharArray()) {
-            if (Character.isDigit(c)) {
-                contadorNumeros++;
-            }
-        }
-        if (contadorNumeros < 2) {
-            throw new IllegalArgumentException("A senha deve conter ao menos 2 números.");
+        } catch (IOException e) {
+            System.out.println("Erro ao adicionar usuário: " + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     private void mostrarUsuarios() {
-        usuarioView.mostrarUsuarios(usuarioService.getUsuarios());
+        try {
+            usuarioView.mostrarUsuarios(usuarioService.getUsuarios());
+        } catch (IOException | ClassNotFoundException | SQLException e) {
+            System.out.println("Erro ao obter usuários: " + e.getMessage());
+        }
     }
 }

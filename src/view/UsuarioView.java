@@ -1,8 +1,8 @@
 package view;
 
-import model.Usuario;
 import java.util.List;
 import java.util.Scanner;
+import model.Usuario;
 
 public class UsuarioView {
     private Scanner scanner;
