@@ -1,8 +1,8 @@
-import controller.UsuarioController;
+import controller.Facade;
 
 public class Main {
     public static void main(String[] args) {
-        UsuarioController usuarioController = new UsuarioController();
-        usuarioController.executar();
+        Facade usuarioFacade = Facade.getInstance();
+        usuarioFacade.executarTudo();
     }
 }
