@@ -1,7 +1,10 @@
 package controller;
 
 public class ValidacaoController {
-    public static void validarLogin(String login) {
+    
+    private static ValidacaoController instance; //usado pra criar uma instancia desse controller PRINCIPIO SINGLETON
+    
+    protected void validarLogin(String login) {
         if (login.isEmpty()) {
             throw new IllegalArgumentException("O login não pode ser vazio.");
         }
@@ -13,7 +16,7 @@ public class ValidacaoController {
         }
     }
 
-    public static void validarSenha(String senha) {
+    protected void validarSenha(String senha) {
         if (senha.length() < 8 || senha.length() > 20) {
             throw new IllegalArgumentException("A senha deve ter entre 8 e 20 caracteres.");
         }
@@ -30,5 +33,16 @@ public class ValidacaoController {
             throw new IllegalArgumentException("A senha deve conter ao menos 2 números.");
         }
     }
+
+    public static ValidacaoController getInstance() { //cria a instancia
+        if (instance == null) {
+            instance = new ValidacaoController();
+        }
+        return instance;
+        /* esse erro aqui gerou automaticamente pelo visual code acho que o tratamento de erro n ta certo 
+       throw new UnsupportedOperationException("Unimplemented method 'getInstance'");
+       */ 
+    }
+    
 }
 
