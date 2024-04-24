@@ -1,8 +1,6 @@
 # Projeto SAGIS
 ### Sistema auxiliar em Gestão de instituições de saúde
 
-![Logo do Projeto](https://drive.google.com/file/d/1hEwEWu1V73hQr5tqYStIf-bFXFRPWUE3/view?usp=sharing)
-
 Projeto para a matéria METODOS DE PROJETO DE SOFTWARE
 
 **Grupo:**  
