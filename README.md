@@ -1,6 +1,6 @@
 # Projeto HealthFlow
 
-![Logo do Projeto](https://drive.google.com/file/d/12Qkrh_q9PSGKPiL51JLDBH6SDNQ-u72q/view?usp=sharing)
+![Logo do Projeto](https://img.freepik.com/vetores-gratis/hospital-logo-design-vector-medical-cross_53876-136743.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1713916800&semt=ais)
 
 Projeto para a matéria METODOS DE PROJETO DE SOFTWARE
 
