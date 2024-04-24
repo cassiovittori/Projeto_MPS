@@ -1,6 +1,6 @@
 # Projeto HealthFlow
 
-![Logo do Projeto](https://drive.google.com/file/d/1hEwEWu1V73hQr5tqYStIf-bFXFRPWUE3/view?usp=drive_link)
+![Logo do Projeto](https://drive.google.com/file/d/1hEwEWu1V73hQr5tqYStIf-bFXFRPWUE3/view?usp=sharing)
 
 Projeto para a matéria METODOS DE PROJETO DE SOFTWARE
 
