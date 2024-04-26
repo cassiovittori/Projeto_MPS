@@ -1,5 +1,11 @@
 package controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import model.Usuario;
+
 public class Facade {
     
     protected static Facade instance;
@@ -19,26 +25,25 @@ public class Facade {
     }
 
     //Acesso ao controles do usuario
-    public void adicionarNovoUsuario() {
-        usuarioController.adicionarUsuario();
+    public void adicionarNovoUsuario(String novoLogin, String novaSenha) {
+        usuarioController.adicionarUsuario(novoLogin, novaSenha);
    }
 
-   public void mostrarTodosUsuarios() {
-       usuarioController.mostrarUsuarios();
+   public void mostrarTodosUsuarios() throws ClassNotFoundException, IOException, SQLException {
+       usuarioController.obterUsuarios();
    }
-
-   public void executarTudo(){
-    usuarioController.executar();
-   }
-
 
     //Acesso a validação de usuario
     public void validarLoginDoUsuario(String login) {
-        validacaoController.validarLogin(login);
+        ValidacaoController.validarLogin(login);
    }
 
     public void validarSenhaDoUsuario(String senha) {
-         validacaoController.validarSenha(senha);
+         ValidacaoController.validarSenha(senha);
+    }
+
+    public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
+        return usuarioController.obterUsuarios();
     }
 
 }
