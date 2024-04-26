@@ -1,27 +1,34 @@
 package view;
 
-import java.util.List;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
+
+import controller.Facade;
 import model.Usuario;
 
 public class UsuarioView {
     private Scanner scanner;
+    private Facade fachada;
 
     public UsuarioView() {
         this.scanner = new Scanner(System.in);
+        this.fachada = Facade.getInstance();
     }
 
-    public Usuario obterNovoUsuario() {
+    public void obterNovoUsuario() {
         System.out.println("Digite o login do usuário:");
         String novoLogin = scanner.next();
         System.out.println("Digite a senha do usuário:");
         String novaSenha = scanner.next();
-        return new Usuario(novoLogin, novaSenha);
+        fachada.adicionarNovoUsuario(novoLogin,novaSenha);
+        System.out.println("login: " + novoLogin +" senha: " + novaSenha);
     }
 
-    public void mostrarUsuarios(List<Usuario> usuarios) {
+    public void mostrarUsuarios() throws ClassNotFoundException, IOException, SQLException {
         System.out.println("Os usuários cadastrados no nosso sistema são:");
-        for (Usuario usuario : usuarios) {
+        //jogar loop para o controller
+        for (Usuario usuario : fachada.obterUsuarios()) {
             System.out.println("Login: " + usuario.getLogin() + ", Senha: " + usuario.getSenha());
         }
     }

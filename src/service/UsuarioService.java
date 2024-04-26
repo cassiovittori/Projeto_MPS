@@ -13,12 +13,18 @@ public class UsuarioService {
 
     public void adicionarUsuario(Usuario usuario) throws IOException, SQLException {
         listaUsuarios.add(usuario);
-        salvarUsuariosEmArquivo();
+        salvarUsuariosEmArquivo(); //pq ele usa uma lista se é passado 1 por 1 ? 
         salvarUsuarioNoBancoDeDados(usuario);
     }
 
     public List<Usuario> getUsuarios() throws IOException, ClassNotFoundException, SQLException {
+        try {
         carregarUsuariosDoArquivo();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erro ao obter usuários: " + e.getMessage());
+            return null;
+        }
+
         return listaUsuarios;
     }
 
@@ -28,6 +34,7 @@ public class UsuarioService {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void carregarUsuariosDoArquivo() throws IOException, ClassNotFoundException {
         File arquivo = new File(arquivoUsuarios);
         if (arquivo.exists()) {

@@ -2,32 +2,26 @@ package controller;
 
 import model.Usuario;
 import service.UsuarioService;
-import view.UsuarioView;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UsuarioController {
     private UsuarioService usuarioService;
-    private UsuarioView usuarioView;
     private static UsuarioController instance; //cria a instancia desse controler
 
-    private UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
+    public UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
         this.usuarioService = new UsuarioService();
-        this.usuarioView = new UsuarioView();
     }
 
-    protected void executar() {
-        adicionarUsuario();
-        mostrarUsuarios();
-    }
 
-    protected void adicionarUsuario() {
+    public void adicionarUsuario(String loginUser, String senhaUser) {
         try {
-            Usuario novoUsuario = usuarioView.obterNovoUsuario();
-            ValidacaoController.validarLogin(novoUsuario.getLogin());
-            ValidacaoController.validarSenha(novoUsuario.getSenha());
-            usuarioService.adicionarUsuario(novoUsuario);
+            ValidacaoController.validarLogin(loginUser);
+            ValidacaoController.validarSenha(senhaUser);
+            Usuario novoUser = new Usuario(loginUser, senhaUser);
+            usuarioService.adicionarUsuario(novoUser);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao adicionar usuário: " + e.getMessage());
         } catch (IOException e) {
@@ -37,12 +31,10 @@ public class UsuarioController {
         }
     }
 
-    protected void mostrarUsuarios() {
-        try {
-            usuarioView.mostrarUsuarios(usuarioService.getUsuarios());
-        } catch (IOException | ClassNotFoundException | SQLException e) {
-            System.out.println("Erro ao obter usuários: " + e.getMessage());
-        }
+    public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
+       
+            return usuarioService.getUsuarios();
+        
     }
 
     public static UsuarioController getInstance() {
