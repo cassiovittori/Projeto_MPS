@@ -1,4 +1,4 @@
- package factory;
+ package controller.factory;
 
 import model.Paciente;
 import model.Usuario;

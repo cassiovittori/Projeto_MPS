@@ -1,4 +1,4 @@
-package factory;
+package controller.factory;
 
 import model.Medico;
 import model.Usuario;
