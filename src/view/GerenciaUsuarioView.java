@@ -7,11 +7,11 @@ import java.util.Scanner;
 import controller.Facade;
 import model.Usuario;
 
-public class UsuarioView {
+public class GerenciaUsuarioView {
     private Scanner scanner;
     private Facade fachada;
 
-    public UsuarioView() {
+    public GerenciaUsuarioView() {
         this.scanner = new Scanner(System.in);
         this.fachada = Facade.getInstance();
     }

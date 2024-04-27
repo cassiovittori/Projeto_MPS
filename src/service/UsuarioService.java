@@ -56,7 +56,8 @@ public class UsuarioService {
     }
 
     public List<Usuario> getUsuariosDoBancoDeDados() throws SQLException {
-        List<Usuario> usuarios = new ArrayList<>();
+        List<Usuario> usuarios = null;
+        /*List<Usuario> usuarios = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(url)) {
             String sql = "SELECT * FROM usuarios";
             try (Statement statement = connection.createStatement();
@@ -68,6 +69,7 @@ public class UsuarioService {
                 }
             }
         }
+        */
         return usuarios;
     }
 }

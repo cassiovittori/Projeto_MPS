@@ -17,6 +17,7 @@ public class UsuarioController {
 
 
     public void adicionarUsuario(String loginUser, String senhaUser) {
+      /*
         try {
             ValidacaoController.validarLogin(loginUser);
             ValidacaoController.validarSenha(senhaUser);
@@ -29,6 +30,7 @@ public class UsuarioController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+         */
     }
 
     public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
