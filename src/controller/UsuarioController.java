@@ -12,7 +12,7 @@ public class UsuarioController {
     private static UsuarioController instance; //cria a instancia desse controler
 
     public UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
-        this.usuarioService = new UsuarioService();
+    	this.usuarioService = UsuarioService.getInstance(); //Adaptado para o padrão Singleton
     }
 
 

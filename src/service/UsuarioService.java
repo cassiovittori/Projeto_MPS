@@ -7,32 +7,46 @@ import java.util.List;
 import model.Usuario;
 
 public class UsuarioService {
+    // Instância única para o singleton
+    private static UsuarioService instance;
+
     private List<Usuario> listaUsuarios = new ArrayList<>();
     private String arquivoUsuarios = "usuarios.bin";
     private String url = "PLACEHOLDER PARA O DIRETORIO DO BD";
 
+    // Construtor privado para evitar instâncias diretas
+    private UsuarioService() {
+        // Inicializações adicionais
+    }
+
+    
+    public static synchronized UsuarioService getInstance() {
+        if (instance == null) {
+            instance = new UsuarioService();
+        }
+        return instance;
+    }
+
+    
     public void adicionarUsuario(Usuario usuario) throws IOException, SQLException {
         listaUsuarios.add(usuario);
-        salvarUsuariosEmArquivo(); //pq ele usa uma lista se é passado 1 por 1 ? 
+        salvarUsuariosEmArquivo(); 
         salvarUsuarioNoBancoDeDados(usuario);
     }
 
-    public List<Usuario> getUsuarios() throws IOException, ClassNotFoundException, SQLException {
-        try {
-        carregarUsuariosDoArquivo();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Erro ao obter usuários: " + e.getMessage());
-            return null;
-        }
 
+    public List<Usuario> getUsuarios() throws IOException, ClassNotFoundException, SQLException {
+        carregarUsuariosDoArquivo();
         return listaUsuarios;
     }
 
+    
     private void salvarUsuariosEmArquivo() throws IOException {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(arquivoUsuarios))) {
             outputStream.writeObject(listaUsuarios);
         }
     }
+
 
     @SuppressWarnings("unchecked")
     private void carregarUsuariosDoArquivo() throws IOException, ClassNotFoundException {
@@ -44,6 +58,7 @@ public class UsuarioService {
         }
     }
 
+
     private void salvarUsuarioNoBancoDeDados(Usuario usuario) throws SQLException {
         try (Connection connection = DriverManager.getConnection(url)) {
             String sql = "INSERT INTO usuarios (login, senha) VALUES (?, ?)";
@@ -54,6 +69,7 @@ public class UsuarioService {
             }
         }
     }
+
 
     public List<Usuario> getUsuariosDoBancoDeDados() throws SQLException {
         List<Usuario> usuarios = new ArrayList<>();
