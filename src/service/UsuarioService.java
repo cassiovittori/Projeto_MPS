@@ -4,23 +4,20 @@ import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import model.Usuario;
+import repository.UsuarioRepository;
 import utils.Constantes;
 
 public class UsuarioService {
     private List<Usuario> listaUsuarios;
     private String arquivoUsuarios;
     private String urlBanco;
-    private Scanner scanner;
     private static UsuarioService instance;
 
     private UsuarioService(){
         this.listaUsuarios = new ArrayList<>();
         this.arquivoUsuarios = Constantes.ARQUIVO_USERS;
         this.urlBanco = Constantes.URL_BANCO;
-        this.scanner = new Scanner(System.in);
     }
 
     public static UsuarioService getInstance(){
@@ -30,13 +27,45 @@ public class UsuarioService {
         return instance;
     }
 
-    public void adicionarUsuario(Usuario usuario) throws IOException, SQLException {
-  
-        listaUsuarios.add(usuario);
-        salvarUsuariosEmArquivo(); //pq ele usa uma lista se é passado 1 por 1 ? 
-        salvarUsuarioNoBancoDeDados(usuario);
-    }
+//post
+    public Usuario createUsuario(Usuario usuario) throws SQLDataException {
 
+        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            return UsuarioRepository.saveUsuario(usuario);
+        }catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+        return null;
+    }
+//get
+    public Usuario readUsuario(long idUsuario){
+        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            return UsuarioRepository.readUsuarioById(idUsuario);
+        }catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+        return null;
+    }
+//del
+    public void deleteUsuario(long idUsuario){
+        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            UsuarioRepository.deleteUsuarioById(idUsuario);
+        }catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+    }
+//put
+    public Usuario putUsuario(long idUsuario) throws SQLDataException {
+    
+        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+             return UsuarioRepository.updateUsuarioById(idUsuario);
+        }catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+        return null;
+        
+    }
+///////////////////////////////////////////////////////////////////////////////////
     public List<Usuario> getUsuariosArquivo() throws IOException, ClassNotFoundException, SQLException {
         try {
         carregarUsuariosDoArquivo();

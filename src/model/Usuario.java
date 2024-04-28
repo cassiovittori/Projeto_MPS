@@ -8,6 +8,7 @@ public abstract class Usuario implements Serializable, IntUsuario {
 
     private static final long serialVersionUID = 1L;
 
+    private Long idUsuario;
     private String login;
     private String senha;
     private String nome;
@@ -18,7 +19,14 @@ public abstract class Usuario implements Serializable, IntUsuario {
     private LocalDate dataNascimento;
     private String tipoUsuario;
 
-    public Usuario() {
+    public Usuario(String login, String senha) {
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getLogin() {
