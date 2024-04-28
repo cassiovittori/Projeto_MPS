@@ -11,10 +11,16 @@ public class Facade {
     protected static Facade instance;
     protected UsuarioController usuarioController;
     protected ValidacaoController validacaoController;
+    protected AuthorizationController authorizationController;
+    protected RelatorioController relatorioController;
+    protected ConsultaController consultaController;
 
     private Facade() { //aqui inicia os controllers na fachada
         this.usuarioController = UsuarioController.getInstance();
         this.validacaoController = ValidacaoController.getInstance();
+        this.authorizationController = AuthorizationController.getInstance();
+        this.relatorioController = RelatorioController.getInstance();
+        this.consultaController = ConsultaController.getInstance();
     }
 
     public static Facade getInstance() {
@@ -24,7 +30,7 @@ public class Facade {
         return instance;
     }
 
-    //Acesso ao controles do usuario
+/////////////Acesso ao controles do usuario/////////////////////////////////////////////////////////////////////////////////////////////////////
     public void adicionarNovoUsuario(String novoLogin, String novaSenha) {
         usuarioController.adicionarUsuario(novoLogin, novaSenha);
    }

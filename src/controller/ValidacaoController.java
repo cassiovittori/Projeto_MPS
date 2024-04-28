@@ -3,6 +3,15 @@ package controller;
 public class ValidacaoController {
     
     private static ValidacaoController instance; //usado pra criar uma instancia desse controller PRINCIPIO SINGLETON
+
+
+    public static ValidacaoController getInstance() { //cria a instancia
+        if (instance == null) {
+            instance = new ValidacaoController();
+        }
+        return instance;
+        //myrna é uma gata
+    }
     
     protected static void validarLogin(String login) {
         if (login.isEmpty()) {
@@ -34,15 +43,7 @@ public class ValidacaoController {
         }
     }
 
-    public static ValidacaoController getInstance() { //cria a instancia
-        if (instance == null) {
-            instance = new ValidacaoController();
-        }
-        return instance;
-        /* esse erro aqui gerou automaticamente pelo visual code acho que o tratamento de erro n ta certo 
-       throw new UnsupportedOperationException("Unimplemented method 'getInstance'");
-       */ 
-    }
+
     
 }
 

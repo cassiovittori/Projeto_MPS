@@ -4,20 +4,40 @@ import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import model.Usuario;
+import utils.Constantes;
 
 public class UsuarioService {
-    private List<Usuario> listaUsuarios = new ArrayList<>();
-    private String arquivoUsuarios = "usuarios.bin";
-    private String url = "PLACEHOLDER PARA O DIRETORIO DO BD";
+    private List<Usuario> listaUsuarios;
+    private String arquivoUsuarios;
+    private String urlBanco;
+    private Scanner scanner;
+    private static UsuarioService instance;
+
+    private UsuarioService(){
+        this.listaUsuarios = new ArrayList<>();
+        this.arquivoUsuarios = Constantes.ARQUIVO_USERS;
+        this.urlBanco = Constantes.URL_BANCO;
+        this.scanner = new Scanner(System.in);
+    }
+
+    public static UsuarioService getInstance(){
+        if (instance == null) {
+            instance = new UsuarioService();
+        }
+        return instance;
+    }
 
     public void adicionarUsuario(Usuario usuario) throws IOException, SQLException {
+  
         listaUsuarios.add(usuario);
         salvarUsuariosEmArquivo(); //pq ele usa uma lista se é passado 1 por 1 ? 
         salvarUsuarioNoBancoDeDados(usuario);
     }
 
-    public List<Usuario> getUsuarios() throws IOException, ClassNotFoundException, SQLException {
+    public List<Usuario> getUsuariosArquivo() throws IOException, ClassNotFoundException, SQLException {
         try {
         carregarUsuariosDoArquivo();
         } catch (IOException | ClassNotFoundException e) {
@@ -45,7 +65,7 @@ public class UsuarioService {
     }
 
     private void salvarUsuarioNoBancoDeDados(Usuario usuario) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = DriverManager.getConnection(urlBanco)) {
             String sql = "INSERT INTO usuarios (login, senha) VALUES (?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, usuario.getLogin());

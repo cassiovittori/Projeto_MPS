@@ -11,12 +11,20 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     private static UsuarioController instance; //cria a instancia desse controler
 
-    public UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
-        this.usuarioService = new UsuarioService();
+    private UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
+        this.usuarioService = UsuarioService.getInstance();
+    }
+
+    public static UsuarioController getInstance() {
+        if (instance == null) {
+            instance = new UsuarioController();
+        }
+        return instance;
     }
 
 
     public void adicionarUsuario(String loginUser, String senhaUser) {
+        
       /*
         try {
             ValidacaoController.validarLogin(loginUser);
@@ -35,18 +43,10 @@ public class UsuarioController {
 
     public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
        
-            return usuarioService.getUsuarios();
+            return usuarioService.getUsuariosArquivo();
         
     }
 
-    public static UsuarioController getInstance() {
-            if (instance == null) {
-                instance = new UsuarioController();
-            }
-            return instance;
-      /* esse erro aqui gerou automaticamente pelo visual code acho que o tratamento de erro n ta certo 
-       throw new UnsupportedOperationException("Unimplemented method 'getInstance'");
-       */ 
-    }
+
     
 }

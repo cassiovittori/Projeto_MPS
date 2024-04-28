@@ -12,7 +12,6 @@ public class GerenciaUsuarioView {
     private Facade fachada;
 
     public GerenciaUsuarioView() {
-        this.scanner = new Scanner(System.in);
         this.fachada = Facade.getInstance();
     }
 
