@@ -1,7 +1,5 @@
 package repository;
 
-import java.sql.SQLDataException;
-
 import model.Admin;
 import model.Medico;
 import model.Paciente;
@@ -9,6 +7,8 @@ import model.Usuario;
 import utils.Constantes;
 
 public abstract class UsuarioRepository{
+
+    //TODOS OS SWITCHS COM IDS SÃO PARA CONTROLAR O TIPO RESPONDIDO AVALIAR MUDANÇA DEPOIS
     
     public static Usuario saveUsuario(Usuario usuario){
         System.out.println("Salvando usuario...");

@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import interfaces.IntUsuario;
 
 public abstract class Usuario implements Serializable, IntUsuario {
@@ -12,15 +11,14 @@ public abstract class Usuario implements Serializable, IntUsuario {
     private String login;
     private String senha;
     private String nome;
-    private Long cpf;
+    private String cpf;
     private String email;
     private String sexo;
     private String numContato;
-    private LocalDate dataNascimento;
+    private String dataNascimento;
     private String tipoUsuario;
 
-    public Usuario(String login, String senha) {
-    }
+
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -44,16 +42,16 @@ public abstract class Usuario implements Serializable, IntUsuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
     public String getEmail() {

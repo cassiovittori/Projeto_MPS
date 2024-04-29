@@ -55,7 +55,7 @@ public class UsuarioService {
         }
     }
 //put
-    public Usuario putUsuario(long idUsuario) throws SQLDataException {
+    public Usuario updateUsuario(long idUsuario) throws SQLDataException {
     
         try (Connection connection = DriverManager.getConnection(urlBanco)) {
              return UsuarioRepository.updateUsuarioById(idUsuario);

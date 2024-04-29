@@ -1,9 +1,13 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
+import exception.SexoException;
+import exception.TipoUserException;
 import model.Usuario;
 
 public class Facade {
@@ -31,12 +35,14 @@ public class Facade {
     }
 
 /////////////Acesso ao controles do usuario/////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void adicionarNovoUsuario(String novoLogin, String novaSenha) {
-        usuarioController.adicionarUsuario(novoLogin, novaSenha);
+    public void adicionarNovoUsuarioCtrl(String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
+                                String dataNascimento,String idtipoUsuario, String crm) throws SQLDataException, TipoUserException, IOException, SexoException {
+
+        usuarioController.postUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idtipoUsuario, crm);
    }
 
    public void mostrarTodosUsuarios() throws ClassNotFoundException, IOException, SQLException {
-       usuarioController.obterUsuarios();
+       //usuarioController.obterUsuarios();
    }
 
     //Acesso a validação de usuario
@@ -48,8 +54,8 @@ public class Facade {
          ValidacaoController.validarSenha(senha);
     }
 
-    public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
-        return usuarioController.obterUsuarios();
-    }
+    //public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
+     //   return usuarioController.obterUsuarios();
+    //}
 
 }
