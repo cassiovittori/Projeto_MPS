@@ -12,6 +12,11 @@ public class Constantes {
     public static final String ID_USER_MEDICO = "3";
     public static final String ID_USER_PACIENTE = "2";
     public static final String ID_USER_ADMIN = "1";
+    public static final long ID_USUARIO_SEQUENCE_VAL = 12344556;
+    public static final String ID_OPCAO_1 = "1";
+    public static final String ID_OPCAO_2 = "2";
+    public static final String ID_OPCAO_3 = "3";
+    public static final String ID_OPCAO_4 = "4";
 
 
 }

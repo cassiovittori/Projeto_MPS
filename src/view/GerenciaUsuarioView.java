@@ -3,14 +3,12 @@ package view;
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 import controller.Facade;
+import utils.Constantes;
 import exception.SexoException;
 import exception.TipoUserException;
-import model.Usuario;
-import utils.Constantes;
 
 public class GerenciaUsuarioView {
     private Scanner scanner;
@@ -18,6 +16,7 @@ public class GerenciaUsuarioView {
 
     public GerenciaUsuarioView() {
         this.fachada = Facade.getInstance();
+        this.scanner = new Scanner(System.in);
     }
 
     public void addNovoUsuario() throws TipoUserException, SQLDataException, IOException, SexoException {
@@ -47,6 +46,40 @@ public class GerenciaUsuarioView {
         fachada.adicionarNovoUsuarioCtrl(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario, crm);    
 
         
+    }
+
+    public void buscaUsuario() throws ClassNotFoundException, IOException, SQLException{
+
+        String parametro;
+
+        System.out.println("Digite o numero correspondente ao tipo de consulta de usuário que deseja fazer:");
+        System.out.println("1-> por id");
+        System.out.println("2-> por cpf");
+        System.out.println("3-> por nome");
+        System.out.println("4-> por crm");
+        String idOpcaoConsulta = scanner.next();
+        switch (idOpcaoConsulta) {
+            case Constantes.ID_OPCAO_1:
+                System.out.println("agora informe o ID do usuario!");
+                break;
+            case Constantes.ID_OPCAO_2:
+                System.out.println("agora informe o NOME do usuario!");
+                break;
+            case Constantes.ID_OPCAO_3:
+                System.out.println("agora informe o CPF do usuario!");
+                break;
+            case Constantes.ID_OPCAO_4:
+                System.out.println("agora informe o CRM do usuario!");
+                break;
+        }
+        parametro = scanner.next();
+        fachada.buscaUsuario(idOpcaoConsulta, parametro);
+        
+    }
+    
+    public void buscaListaUsuario(){
+        System.out.println("Digite o numero correspondente ao tipo de consulta de usuário que deseja fazer:");
+
     }
 
     /*

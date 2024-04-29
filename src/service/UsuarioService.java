@@ -31,11 +31,13 @@ public class UsuarioService {
     public Usuario createUsuario(Usuario usuario) throws SQLDataException {
 
         try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            long idUser = UsuarioRepository.SequenceIdUsuario();
+            usuario.setIdUsuario(idUser);
             return UsuarioRepository.saveUsuario(usuario);
         }catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
         }
-        return null;
+        return usuario;
     }
 //get
     public Usuario readUsuario(long idUsuario){

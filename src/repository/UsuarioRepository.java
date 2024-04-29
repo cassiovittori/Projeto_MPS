@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.random.RandomGenerator;
+
 import model.Admin;
 import model.Medico;
 import model.Paciente;
@@ -68,6 +70,11 @@ public abstract class UsuarioRepository{
         System.out.println("Deletando usuario de ID: " + idUsuario + "...");
         System.out.println("Usuario deletado com SUCESSO!");    
         
+    }
+
+    public static long SequenceIdUsuario() {
+
+        return Constantes.ID_USUARIO_SEQUENCE_VAL;
     }
 
 }

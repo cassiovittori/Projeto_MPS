@@ -63,18 +63,19 @@ public class UsuarioController {
             System.out.println("falha no cadastro: " + e.getMessage());
         } catch (SexoException e){
             System.out.println("Falha no cadastro: " + e.getMessage());
-        }
-
-/*
         } catch (IllegalArgumentException e) {
-            System.out.println("Erro ao adicionar usuário: " + e.getMessage());
+            System.out.println("Falha no cadastro: " + e.getMessage());
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Falha no cadastro: " + e.getMessage());
         }
-   */      
+        
     }
 
-    public void getUsuario(){
+    public void getUsuario(String idOpcao, String parametro){
+        
+    }
+
+    public void getListaUsuario(){
 
     }
 

@@ -3,12 +3,8 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.List;
-
 import exception.SexoException;
 import exception.TipoUserException;
-import model.Usuario;
 
 public class Facade {
     
@@ -41,9 +37,13 @@ public class Facade {
         usuarioController.postUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idtipoUsuario, crm);
    }
 
-   public void mostrarTodosUsuarios() throws ClassNotFoundException, IOException, SQLException {
-       //usuarioController.obterUsuarios();
-   }
+    public void mostrarTodosUsuarios() throws ClassNotFoundException, IOException, SQLException {
+        usuarioController.getListaUsuario();
+    }
+
+    public void buscaUsuario(String idOpcao, String parametro) throws ClassNotFoundException, IOException, SQLException {
+        usuarioController.getUsuario(idOpcao, parametro);
+    }
 
     //Acesso a validação de usuario
     public void validarLoginDoUsuario(String login) {
