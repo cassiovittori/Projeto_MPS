@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.random.RandomGenerator;
 
 import model.Admin;
@@ -50,10 +52,39 @@ public abstract class UsuarioRepository{
         
     }
 
-    public static Usuario updateUsuarioById(Long idUsuario){
-        System.out.println("Atualizando usuario de ID: " + idUsuario + "...");
+
+    public static Usuario readUsuarioParameter(String idOpcao, String parametro){
+        System.out.println("Buscando usuario por parametro...");
+            System.out.println("Usuario Encontrado!");
+            switch (idOpcao) {
+                case "2":
+                    return new Admin();
+                case "3":
+                    return new Paciente();
+                case "4":
+                    return new Medico();
+            }
+        return null;
+        
+    }
+
+    public static List<Usuario> readListUsuario(){
+        System.out.println("Buscando todos os usuarios...");
+        System.out.println("Lista:");
+        System.out.println("Yurizin da massa");
+        System.out.println("Jonas jonas jonas");
+        System.out.println("Lucas do xadrez");
+        System.out.println("Cassilds");
+            
+        List<Usuario> lista = new ArrayList<Usuario>();
+        return lista;
+        
+    }
+
+    public static Usuario updateUsuario(String idUser, String login, String senha, String nome, String numero, String email){
+        System.out.println("Atualizando usuario de ID: " + idUser + "...");
         System.out.println("Usuario Atualizado!");
-        switch (String.valueOf(idUsuario)) {
+        switch (String.valueOf(idUser)) {
             case "1":
                 return new Admin();
             case "2":

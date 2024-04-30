@@ -44,7 +44,6 @@ public class GerenciaUsuarioView {
         String crm = scanner.next();
         
         fachada.adicionarNovoUsuarioCtrl(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario, crm);    
-
         
     }
 
@@ -77,9 +76,35 @@ public class GerenciaUsuarioView {
         
     }
     
-    public void buscaListaUsuario(){
+    public void buscaListaUsuario() throws ClassNotFoundException, IOException, SQLException{
         System.out.println("Digite o numero correspondente ao tipo de consulta de usuário que deseja fazer:");
+        fachada.buscaListaUsuario();
+    }
 
+    public void editarUsuario() throws TipoUserException, SQLDataException, IOException, SexoException {
+
+        System.out.println("Digite o ID do usuario que deseja editar:");
+        String idUser = scanner.next();
+        System.out.println("Digite o novo login do usuário:");
+        String login = scanner.next();
+        System.out.println("Digite a nova senha do usuário:");
+        String senha = scanner.next();
+        System.out.println("Digite o novo nome do usuário:");
+        String nome = scanner.next();
+        System.out.println("Digite o novo número de contato do usuário:");
+        String numero = scanner.next();
+        System.out.println("Digite o novo email do usuário:");
+        String email = scanner.next();
+        fachada.atualizaUsuarioCtrl(idUser, login, senha, nome, numero, email);
+        
+    }
+
+    public void deletarUsuario() throws TipoUserException, SQLDataException, IOException, SexoException {
+
+        System.out.println("Digite o ID do usuario que deseja editar:");
+        String idUser = scanner.next();
+        fachada.deletaUsuarioCtrl(idUser);
+        
     }
 
     /*

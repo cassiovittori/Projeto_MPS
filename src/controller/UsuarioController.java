@@ -4,6 +4,7 @@ import model.Admin;
 import model.Medico;
 import model.Paciente;
 import model.Usuario;
+import repository.UsuarioRepository;
 import service.UsuarioService;
 import utils.Constantes;
 
@@ -32,7 +33,7 @@ public class UsuarioController {
     }
 
 
-    public void postUsuario(String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
+    public Usuario postUsuario(String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
                                 String dataNascimento,String idTipoUsuario, String crm) throws SQLDataException, IOException, TipoUserException, SexoException {
                                     
         Usuario user = null;
@@ -55,7 +56,7 @@ public class UsuarioController {
                     break;
                     
             }
-            usuarioService.createUsuario(user);
+            return usuarioService.createUsuario(user);
             
         } catch (TipoUserException e) {
             System.out.println("falha no cadastro: " + e.getMessage());
@@ -68,25 +69,31 @@ public class UsuarioController {
         } catch (SQLException e) {
             System.out.println("Falha no cadastro: " + e.getMessage());
         }
-        
+        return null;
     }
 
-    public void getUsuario(String idOpcao, String parametro){
-        
+    public Usuario getUsuario(String idOpcao, String parametro){
+           switch (idOpcao) {
+            case Constantes.ID_OPCAO_1:
+                return usuarioService.readUsuarioId(Long.valueOf(parametro));
+            default :
+                return usuarioService.readUsuario(idOpcao, parametro);
+           }
     }
 
-    public void getListaUsuario(){
-
+    public List<Usuario> getListaUsuario(){
+        return usuarioService.readListUsuario();
     }
 
     
-    public void putUsuario(){
-
+    public void putUsuario(String idUser, String login, String senha, String nome, String numero, String email) throws SQLDataException, NumberFormatException{
+        usuarioService.updateUsuario(idUser, login, senha, nome,numero, email);
+        
     }
 
     
-    public void delUsuario(){
-
+    public void delUsuario(String idUser){
+        usuarioService.deleteUsuario(Long.valueOf(idUser));
     }
 
     

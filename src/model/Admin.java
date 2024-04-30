@@ -17,8 +17,6 @@ public class Admin extends Usuario {
         this.setNumContato(numContato);
     }
 
-    
-
     public Admin() {
         this.setLogin(null);
         this.setSenha(null);

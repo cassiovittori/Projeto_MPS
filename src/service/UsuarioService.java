@@ -40,9 +40,28 @@ public class UsuarioService {
         return usuario;
     }
 //get
-    public Usuario readUsuario(long idUsuario){
+    public Usuario readUsuarioId(long idUsuario){
         try (Connection connection = DriverManager.getConnection(urlBanco)) {
             return UsuarioRepository.readUsuarioById(idUsuario);
+        }catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+        return null;
+    }
+
+
+    public Usuario readUsuario(String idOpcao, String parametro) {
+        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            return UsuarioRepository.readUsuarioParameter(idOpcao,parametro);
+        }catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public List<Usuario> readListUsuario() {
+        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            return UsuarioRepository.readListUsuario();
         }catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
         }
@@ -57,10 +76,10 @@ public class UsuarioService {
         }
     }
 //put
-    public Usuario updateUsuario(long idUsuario) throws SQLDataException {
+    public Usuario updateUsuario(String idUser, String login, String senha, String nome, String numero, String email) throws SQLDataException {
     
         try (Connection connection = DriverManager.getConnection(urlBanco)) {
-             return UsuarioRepository.updateUsuarioById(idUsuario);
+             return UsuarioRepository.updateUsuario(idUser, login,senha, nome,numero, email );
         }catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
         }
@@ -123,4 +142,6 @@ public class UsuarioService {
         */
         return usuarios;
     }
+
+
 }
