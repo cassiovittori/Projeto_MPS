@@ -46,16 +46,16 @@ public class UsuarioController {
 
             switch (idTipoUsuario) {
                 case Constantes.ID_USER_ADMIN:
-                    user = new Admin(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_ADMIN);
+                    user = FactoryAdmin.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_ADMIN);
                     break;
                 case Constantes.ID_USER_MEDICO:
-                    user = new Medico(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_MEDICO, crm);
+                    user = FactoryMedico.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_MEDICO, crm);
                     break;
                 case Constantes.ID_USER_PACIENTE:
-                    user = new Paciente(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_PACIENTE);
+                    user = FactoryPaciente.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario);
                     break;
                     
-            }
+            }       
             return usuarioService.createUsuario(user);
             
         } catch (TipoUserException e) {
