@@ -1,6 +1,5 @@
 package interfaces;
 
-public interface IntUsuario {
+public interface intRelatorio {
     void gerarRelatorio();
-
 }
