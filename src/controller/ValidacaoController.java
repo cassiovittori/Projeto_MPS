@@ -1,8 +1,21 @@
 package controller;
 
+import exception.SexoException;
+import exception.TipoUserException;
+import utils.Constantes;
+
 public class ValidacaoController {
     
     private static ValidacaoController instance; //usado pra criar uma instancia desse controller PRINCIPIO SINGLETON
+
+
+    public static ValidacaoController getInstance() { //cria a instancia
+        if (instance == null) {
+            instance = new ValidacaoController();
+        }
+        return instance;
+        //myrna é uma gata
+    }
     
     protected static void validarLogin(String login) {
         if (login.isEmpty()) {
@@ -34,15 +47,19 @@ public class ValidacaoController {
         }
     }
 
-    public static ValidacaoController getInstance() { //cria a instancia
-        if (instance == null) {
-            instance = new ValidacaoController();
+    public static void validarTipoUser(String idTipoUsuario) throws TipoUserException {
+        if ( !idTipoUsuario.equals(Constantes.ID_USER_ADMIN) && !idTipoUsuario.equals(Constantes.ID_USER_MEDICO) && !idTipoUsuario.equals(Constantes.ID_USER_PACIENTE) ) {
+            throw new TipoUserException("tipoUsuario informado não mapeado!");
         }
-        return instance;
-        /* esse erro aqui gerou automaticamente pelo visual code acho que o tratamento de erro n ta certo 
-       throw new UnsupportedOperationException("Unimplemented method 'getInstance'");
-       */ 
+        
     }
+
+    public static void validarSexo(String sexo) throws SexoException {
+        if(!sexo.equals(Constantes.SEXO_M) && !sexo.equals(Constantes.SEXO_F)){
+            throw new SexoException("Sexo informado foi foi mapeado!");
+        }
+    }
+
     
 }
 
