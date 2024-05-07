@@ -1,18 +1,17 @@
 package view;
 
+import controller.Facade;
+import exception.SexoException;
+import exception.TipoUserException;
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.Scanner;
-
-import controller.Facade;
 import utils.Constantes;
-import exception.SexoException;
-import exception.TipoUserException;
 
 public class GerenciaUsuarioView {
-    private Scanner scanner;
-    private Facade fachada;
+    private final Scanner scanner;
+    private final Facade fachada;
 
     public GerenciaUsuarioView() {
         this.fachada = Facade.getInstance();
@@ -58,18 +57,10 @@ public class GerenciaUsuarioView {
         System.out.println("4-> por crm");
         String idOpcaoConsulta = scanner.next();
         switch (idOpcaoConsulta) {
-            case Constantes.ID_OPCAO_1:
-                System.out.println("agora informe o ID do usuario!");
-                break;
-            case Constantes.ID_OPCAO_2:
-                System.out.println("agora informe o NOME do usuario!");
-                break;
-            case Constantes.ID_OPCAO_3:
-                System.out.println("agora informe o CPF do usuario!");
-                break;
-            case Constantes.ID_OPCAO_4:
-                System.out.println("agora informe o CRM do usuario!");
-                break;
+            case Constantes.ID_OPCAO_1 -> System.out.println("agora informe o ID do usuario!");
+            case Constantes.ID_OPCAO_2 -> System.out.println("agora informe o NOME do usuario!");
+            case Constantes.ID_OPCAO_3 -> System.out.println("agora informe o CPF do usuario!");
+            case Constantes.ID_OPCAO_4 -> System.out.println("agora informe o CRM do usuario!");
         }
         parametro = scanner.next();
         fachada.buscaUsuario(idOpcaoConsulta, parametro);

@@ -2,14 +2,15 @@ package controller;
 
 
 import factory.FabricaRelatorio;
-//import model.Usuario;
-import service.RelatorioService;
-import model.Relatorio;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
+import model.Relatorio;
+import service.RelatorioService;
 
 abstract class RelatorioController {
     
-    private RelatorioService relatorioService;
+    private final RelatorioService relatorioService;
     protected abstract String cabecalhoRelatorio(String titulo, String descricao);
     protected abstract String corpoRelatorio(String usuarios);
     protected abstract String rodapeRelatorio(String dataCriacao, String Autor);
@@ -23,24 +24,37 @@ abstract class RelatorioController {
         return Singleton.INSTANCE; //singleton holder
     }
 
-     private static class Singleton {
+    private static class Singleton {
         private static final RelatorioController INSTANCE = new RelatorioTXTController(); // Pode ser qualquer uma das implementações
     }
 
 
     public final void adicionarNovoRelatorio(String usuarios,String titulo, String descricao,String dataCriacao,String autor){
            
+            try {
+            
             String cabecalho = cabecalhoRelatorio(titulo, descricao);
             String corpo = corpoRelatorio(usuarios);
             String rodape = rodapeRelatorio(dataCriacao, autor);
             Relatorio relatorio = FabricaRelatorio.criaRelatorio(cabecalho, corpo, rodape, dataCriacao, autor); //talvez fazer duas fabricas, nao sei
-            //excessao criada pelo programa, alterar depoisssss
-            try {
-                relatorioService.createRelatorio(relatorio);
+            
+            relatorioService.createRelatorio(relatorio);
+           
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             }
+
+    }
+
+    public void imprimirRelatorio(Relatorio relatorio, String nomeArquivo){
+        
+        try (FileWriter arquivo = new FileWriter(nomeArquivo)) {
+            
+            arquivo.write(relatorio.getCabecalho());
+            arquivo.write(relatorio.getCorpo());
+            arquivo.write(relatorio.getRodape());
+
+        } catch (IOException e) {
+        }     
 
     }
 

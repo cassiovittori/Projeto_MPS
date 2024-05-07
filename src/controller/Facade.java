@@ -1,10 +1,10 @@
 package controller;
 
+import exception.SexoException;
+import exception.TipoUserException;
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
-import exception.SexoException;
-import exception.TipoUserException;
 //import model.Usuario;
 
 public class Facade {
@@ -102,5 +102,6 @@ public class Facade {
     //public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
      //   return usuarioController.obterUsuarios();
     //}
+
 
 }

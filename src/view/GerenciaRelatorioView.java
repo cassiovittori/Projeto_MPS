@@ -1,15 +1,12 @@
 package view;
 
-import java.io.IOException;
+import controller.Facade;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import controller.Facade;
-import utils.Constantes;
-
 public class GerenciaRelatorioView {
-    private Scanner scanner;
-    private Facade fachada;
+    private final Scanner scanner;
+    private final Facade fachada;
 
     public GerenciaRelatorioView() {
         this.fachada = Facade.getInstance();
@@ -26,7 +23,7 @@ public class GerenciaRelatorioView {
         System.out.println("Digite o autor do relatório:");
         String autor = scanner.nextLine();
         
-        fachada.adicionarNovoRelatorioCtrl(titulo, descricao, dataCriacao, autor);
+        fachada.adicionarNovoRelatorioCtrl(titulo, descricao, dataCriacao, autor, autor);
         System.out.println("Relatório adicionado com sucesso!");
     }
 

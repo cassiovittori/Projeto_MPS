@@ -7,8 +7,6 @@ import utils.Constantes;
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.List;
 
 import exception.SexoException;
 import exception.TipoUserException;
@@ -17,7 +15,7 @@ import factory.FactoryMedico;
 import factory.FactoryPaciente;
 
 public class UsuarioController {
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
     private static UsuarioController instance; //cria a instancia desse controler
 
     private UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
@@ -44,28 +42,16 @@ public class UsuarioController {
             ValidacaoController.validarSexo(sexo);
 
             switch (idTipoUsuario) {
-                case Constantes.ID_USER_ADMIN:
-                    user = FactoryAdmin.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_ADMIN);
-                    break;
-                case Constantes.ID_USER_MEDICO:
-                    user = FactoryMedico.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_MEDICO, crm);
-                    break;
-                case Constantes.ID_USER_PACIENTE:
-                    user = FactoryPaciente.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario);
-                    break;
+                case Constantes.ID_USER_ADMIN -> user = FactoryAdmin.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_ADMIN);
+                case Constantes.ID_USER_MEDICO -> user = FactoryMedico.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_MEDICO, crm);
+                case Constantes.ID_USER_PACIENTE -> user = FactoryPaciente.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario);
                     
             }
             usuarioService.createUsuario(user);
             
-        } catch (TipoUserException e) {
+        } catch (TipoUserException | SQLDataException e) {
             System.out.println("falha no cadastro: " + e.getMessage());
-        } catch (SQLDataException e){
-            System.out.println("falha no cadastro: " + e.getMessage());
-        } catch (SexoException e){
-            System.out.println("Falha no cadastro: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Falha no cadastro: " + e.getMessage());
-        } catch (SQLException e) {
+        } catch (SexoException | IllegalArgumentException | SQLException e){
             System.out.println("Falha no cadastro: " + e.getMessage());
         }
         
