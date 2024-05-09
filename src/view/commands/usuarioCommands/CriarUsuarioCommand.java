@@ -37,18 +37,6 @@ public class CriarUsuarioCommand implements Command {
 
     @Override
     public void executar(){
-
-        try {
-            fachada.adicionarNovoUsuarioCtrl(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, strTipoUsuario, crm);
-        } catch (SQLDataException e) {
-            throw new RuntimeException(e);
-        } catch (TipoUserException e) {
-            throw new RuntimeException(e);
-        } catch (SexoException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        fachada.adicionarNovoUsuarioCtrl(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, strTipoUsuario, crm);
     }
 }

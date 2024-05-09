@@ -82,17 +82,12 @@ public class CriarUsuarioConsoleState implements ConsoleState {
 
     @Override
     public void direcionar(int opcao, Scanner scanner) {
-        switch (opcao){
-            case 1:
-                this.montarTela(scanner);
-                break;
-            case 2:
-                new CriarUsuarioConsoleState().montarTela(scanner);
-                break;
-            case 3:
-                this.sair();
-                break;
-            default:
+        switch (opcao) {
+            case 1 -> this.montarTela(scanner);
+            case 2 -> new UsuarioConsoleState().montarTela(scanner);
+            case 3 -> this.sair();
+            default -> {
+            }
         }
     }
 

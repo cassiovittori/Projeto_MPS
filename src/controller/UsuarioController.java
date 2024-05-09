@@ -15,7 +15,7 @@ import utils.enums.TipoUsuarioEnum;
 
 public class UsuarioController {
     private UsuarioService usuarioService;
-    private static UsuarioController instance; //cria a instancia desse controler
+    private static UsuarioController instance;
 
     private UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
         this.usuarioService = UsuarioService.getInstance();
@@ -30,7 +30,7 @@ public class UsuarioController {
 
 
     public Usuario postUsuario(String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
-                                String dataNascimento,String strTipoUsuario, String crm) throws SQLDataException, IOException, TipoUserException, SexoException {
+                                String dataNascimento,String strTipoUsuario, String crm){
 
         try{
             ValidacaoController.validarLogin(login);
@@ -58,7 +58,7 @@ public class UsuarioController {
 
     public Usuario getUsuario(String idOpcao, String parametro){
            switch (idOpcao) {
-            case Constantes.ID_OPCAO_1:
+            case "1":
                 return usuarioService.readUsuarioId(Long.valueOf(parametro));
             default :
                 return usuarioService.readUsuario(idOpcao, parametro);
@@ -70,9 +70,13 @@ public class UsuarioController {
     }
 
     
-    public void putUsuario(String idUser, String login, String senha, String nome, String numero, String email) throws SQLDataException, NumberFormatException{
-        usuarioService.updateUsuario(idUser, login, senha, nome,numero, email);
-        
+    public void putUsuario(String idUser, String login, String senha, String nome, String numero, String email) {
+        try {
+            usuarioService.updateUsuario(idUser, login, senha, nome,numero, email);
+        } catch (SQLDataException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     

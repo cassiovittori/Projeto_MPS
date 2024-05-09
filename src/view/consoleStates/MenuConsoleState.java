@@ -1,6 +1,8 @@
 package view.consoleStates;
 
 import view.commands.SairCommand;
+import view.consoleStates.consultaStates.ConsultaConsoleState;
+import view.consoleStates.relatorioStates.RelatorioConsoleState;
 import view.consoleStates.usuarioStates.UsuarioConsoleState;
 
 import java.util.Scanner;
@@ -28,9 +30,11 @@ public class MenuConsoleState implements ConsoleState {
                 new UsuarioConsoleState().montarTela(scanner);
                 break;
             case 2:
-                return;
+                new ConsultaConsoleState().montarTela(scanner);
+                break;
             case 3:
-                return;
+                new RelatorioConsoleState().montarTela(scanner);
+                break;
             case 4:
                 this.sair();
                 break;
