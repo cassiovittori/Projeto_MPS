@@ -1,6 +1,6 @@
 package model;
 
-import utils.Enums.TipoUsuarioEnum;
+import utils.enums.TipoUsuarioEnum;
 
 public class Paciente extends Usuario {
 

@@ -1,19 +1,17 @@
 package controller;
 
 import model.*;
-import repository.UsuarioRepository;
 import service.UsuarioService;
 import utils.Constantes;
 
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 import exception.SexoException;
 import exception.TipoUserException;
-import utils.Enums.TipoUsuarioEnum;
+import utils.enums.TipoUsuarioEnum;
 
 public class UsuarioController {
     private UsuarioService usuarioService;

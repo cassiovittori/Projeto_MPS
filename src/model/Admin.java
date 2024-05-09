@@ -1,8 +1,6 @@
 package model;
 
-import utils.Enums.TipoUsuarioEnum;
-
-import java.time.LocalDate;
+import utils.enums.TipoUsuarioEnum;
 
 public class Admin extends Usuario {
 

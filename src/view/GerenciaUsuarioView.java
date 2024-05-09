@@ -115,13 +115,5 @@ public class GerenciaUsuarioView {
             System.out.println("Login: " + usuario.getLogin() + ", Senha: " + usuario.getSenha());
         }
     }
-
-    Interface Usuario()
-        ADM
-        PACIENTE
-        MEDICO
-    FACTORY -> 1 2 3
-
-
      */
 }
