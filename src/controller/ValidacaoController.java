@@ -47,16 +47,9 @@ public class ValidacaoController {
         }
     }
 
-    public static void validarTipoUser(String idTipoUsuario) throws TipoUserException {
-        if ( !idTipoUsuario.equals(Constantes.ID_USER_ADMIN) && !idTipoUsuario.equals(Constantes.ID_USER_MEDICO) && !idTipoUsuario.equals(Constantes.ID_USER_PACIENTE) ) {
-            throw new TipoUserException("tipoUsuario informado não mapeado!");
-        }
-        
-    }
-
     public static void validarSexo(String sexo) throws SexoException {
         if(!sexo.equals(Constantes.SEXO_M) && !sexo.equals(Constantes.SEXO_F)){
-            throw new SexoException("Sexo informado foi foi mapeado!");
+            throw new SexoException("Sexo informado não foi mapeado!");
         }
     }
 

@@ -55,6 +55,7 @@ public class Facade {
         return usuarioController.getListaUsuario();
     }
 
+
     /*
     //Acesso a validação de usuario
     public void validarLoginDoUsuario(String login) {

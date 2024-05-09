@@ -1,9 +1,11 @@
 package model;
 
+import utils.Enums.TipoUsuarioEnum;
+
 public class Paciente extends Usuario {
 
     public Paciente(String login, String senha, String nome, String cpf, String email, String sexo, String numContato,
-            String dataNascimento, String tipoUsuario) {
+            String dataNascimento, TipoUsuarioEnum tipoUsuario) {
         this.setLogin(login);
         this.setSenha(senha);
         this.setNome(nome);
@@ -23,10 +25,12 @@ public class Paciente extends Usuario {
         this.setDataNascimento(null);
         this.setEmail(null);
         this.setSexo(null);
-        this.setTipoUsuario(null);
+        this.setTipoUsuario(TipoUsuarioEnum.PACIENTE);
         this.setNumContato(null);
-}
+    }
 
-    
-    
+    @Override
+    public void gerarRelatorio() {
+
+    }
 }

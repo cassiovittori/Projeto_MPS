@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import interfaces.IntUsuario;
+import utils.Enums.TipoUsuarioEnum;
 
 public abstract class Usuario implements Serializable, IntUsuario {
 
@@ -16,7 +17,7 @@ public abstract class Usuario implements Serializable, IntUsuario {
     private String sexo;
     private String numContato;
     private String dataNascimento;
-    private String tipoUsuario;
+    private TipoUsuarioEnum tipoUsuario;
 
 
 
@@ -78,10 +79,26 @@ public abstract class Usuario implements Serializable, IntUsuario {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    public String getTipoUsuario() {
+    public TipoUsuarioEnum getTipoUsuario() {
         return tipoUsuario;
     }
-    public void setTipoUsuario(String tipoUsuario) {
+    public void setTipoUsuario(TipoUsuarioEnum tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", login='" + login + '\'' +
+                ", senha='" + senha + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", numContato='" + numContato + '\'' +
+                ", dataNascimento='" + dataNascimento + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                '}';
     }
 }

@@ -40,7 +40,7 @@ public class GerenciaUsuarioView {
         String idTipoUsuario = scanner.next();
         System.out.println("Digite o email do usuário");
         String email = scanner.next();
-        System.out.println("Caso seja um médigo, digite o CRM");
+        System.out.println("Caso seja um médico, digite o CRM");
         String crm = scanner.next();
         
         fachada.adicionarNovoUsuarioCtrl(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario, crm);    
@@ -115,5 +115,13 @@ public class GerenciaUsuarioView {
             System.out.println("Login: " + usuario.getLogin() + ", Senha: " + usuario.getSenha());
         }
     }
+
+    Interface Usuario()
+        ADM
+        PACIENTE
+        MEDICO
+    FACTORY -> 1 2 3
+
+
      */
 }

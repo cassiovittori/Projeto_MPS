@@ -15,26 +15,9 @@ public abstract class UsuarioRepository{
     //TODOS OS SWITCHS COM IDS SÃO PARA CONTROLAR O TIPO RESPONDIDO AVALIAR MUDANÇA DEPOIS
     
     public static Usuario saveUsuario(Usuario usuario){
-        System.out.println("Salvando usuario...");
-        switch (String.valueOf(usuario.getTipoUsuario())) {
-            case Constantes.USER_ADMIN:
-                System.out.println("Usuario: " + usuario.getNome() 
-                    + "de CPF:" + usuario.getCpf() 
-                        + "Salvo com SUCESSO!" + usuario.getTipoUsuario());
-                return new Admin();
-            case Constantes.USER_PACIENTE:
-                System.out.println("Usuario: " + usuario.getNome() 
-                + "de CPF:" + usuario.getCpf() 
-                    + "Salvo com SUCESSO!" + usuario.getTipoUsuario());
-                return new Paciente();
-            case Constantes.USER_MEDICO:
-                System.out.println("Usuario: " + usuario.getNome() 
-                + "de CPF:" + usuario.getCpf() 
-                    + "Salvo com SUCESSO!" + usuario.getTipoUsuario());
-                return new Medico();
-        }
+        System.out.println("Salvando usuario...\n");
+        System.out.println(usuario.toString());
         return null;
-        
     }
 
     public static Usuario readUsuarioById(Long idUsuario){

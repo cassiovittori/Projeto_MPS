@@ -1,9 +1,6 @@
 package controller;
 
-import model.Admin;
-import model.Medico;
-import model.Paciente;
-import model.Usuario;
+import model.*;
 import repository.UsuarioRepository;
 import service.UsuarioService;
 import utils.Constantes;
@@ -16,6 +13,7 @@ import java.util.List;
 
 import exception.SexoException;
 import exception.TipoUserException;
+import utils.Enums.TipoUsuarioEnum;
 
 public class UsuarioController {
     private UsuarioService usuarioService;
@@ -34,29 +32,17 @@ public class UsuarioController {
 
 
     public Usuario postUsuario(String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
-                                String dataNascimento,String idTipoUsuario, String crm) throws SQLDataException, IOException, TipoUserException, SexoException {
-                                    
-        Usuario user = null;
+                                String dataNascimento,String strTipoUsuario, String crm) throws SQLDataException, IOException, TipoUserException, SexoException {
 
         try{
             ValidacaoController.validarLogin(login);
             ValidacaoController.validarSenha(senha);
-            ValidacaoController.validarTipoUser(idTipoUsuario);
             ValidacaoController.validarSexo(sexo);
 
-            switch (idTipoUsuario) {
-                case Constantes.ID_USER_ADMIN:
-                    user = FactoryAdmin.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_ADMIN);
-                    break;
-                case Constantes.ID_USER_MEDICO:
-                    user = FactoryMedico.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_MEDICO, crm);
-                    break;
-                case Constantes.ID_USER_PACIENTE:
-                    user = FactoryPaciente.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario);
-                    break;
-                    
-            }       
-            return usuarioService.createUsuario(user);
+            int idTipoUsuario = Integer.parseInt(strTipoUsuario);
+            Usuario usuario = UsuarioFactory.criarUsuario(TipoUsuarioEnum.comId(idTipoUsuario),login,senha,nome,cpf,email,sexo,numContato,dataNascimento,crm);
+
+            return usuarioService.createUsuario(usuario);
             
         } catch (TipoUserException e) {
             System.out.println("falha no cadastro: " + e.getMessage());
