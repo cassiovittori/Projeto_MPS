@@ -3,9 +3,6 @@ package view.commands.usuarioCommands;
 import controller.Facade;
 import view.commands.Command;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 public class buscarUsuarioPorCommand implements Command {
     Facade fachada;
     int opcao;
