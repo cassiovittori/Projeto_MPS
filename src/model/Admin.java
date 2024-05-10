@@ -1,11 +1,11 @@
 package model;
 
-import java.time.LocalDate;
+import utils.enums.TipoUsuarioEnum;
 
 public class Admin extends Usuario {
 
     public Admin(String login, String senha, String nome, String cpf, String email, String sexo, String numContato,
-            String dataNascimento, String tipoUsuario) {
+            String dataNascimento, TipoUsuarioEnum tipoUsuario) {
         this.setLogin(login);
         this.setSenha(senha);
         this.setNome(nome);
@@ -25,10 +25,13 @@ public class Admin extends Usuario {
         this.setDataNascimento(null);
         this.setEmail(null);
         this.setSexo(null);
-        this.setTipoUsuario(null);
+        this.setTipoUsuario(TipoUsuarioEnum.ADMIN);
         this.setNumContato(null);
 }
 
-    
 
+    @Override
+    public void gerarRelatorio() {
+
+    }
 }

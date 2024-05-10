@@ -9,8 +9,15 @@ public class Consulta implements IntConsulta {
     private long idConsulta;
     private String crmMedico;
     private String cpfPaciente;
-    private LocalDate dataConsulta;
+    private String dataConsulta;
     private String motivoConsulta;
+
+    public Consulta(String crmMedico, String cpfPaciente, String dataConsulta, String motivoConsulta) {
+        this.crmMedico = crmMedico;
+        this.cpfPaciente = cpfPaciente;
+        this.dataConsulta = dataConsulta;
+        this.motivoConsulta = motivoConsulta;
+    }
 
     public long getIdConsulta() {
         return idConsulta;
@@ -30,10 +37,10 @@ public class Consulta implements IntConsulta {
     public void setCrmMedico(String crmMedico) {
         this.crmMedico = crmMedico;
     }
-    public LocalDate getDataConsulta() {
+    public String getDataConsulta() {
         return dataConsulta;
     }
-    public void setDataConsulta(LocalDate dataConsulta) {
+    public void setDataConsulta(String dataConsulta) {
         this.dataConsulta = dataConsulta;
     }
     public String getMotivoConsulta() {

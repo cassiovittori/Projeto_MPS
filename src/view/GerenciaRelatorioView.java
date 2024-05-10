@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import adapters.ReportAdapter;
 import controller.Facade;
 import utils.Constantes;
 
 public class GerenciaRelatorioView {
     private Scanner scanner;
     private Facade fachada;
+    private ReportAdapter reportAdapter;
 
-    public GerenciaRelatorioView() {
+    public GerenciaRelatorioView(ReportAdapter reportAdapter) {
         this.fachada = Facade.getInstance();
+        this.reportAdapter = reportAdapter;
         this.scanner = new Scanner(System.in);
     }
 
@@ -26,6 +29,7 @@ public class GerenciaRelatorioView {
         System.out.println("Digite o autor do relatório:");
         String autor = scanner.nextLine();
         
+        reportAdapter.addReport(titulo, descricao, dataCriacao, autor);
         fachada.adicionarNovoRelatorioCtrl(titulo, descricao, dataCriacao, autor);
         System.out.println("Relatório adicionado com sucesso!");
     }

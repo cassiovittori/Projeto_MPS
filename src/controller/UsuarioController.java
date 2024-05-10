@@ -1,25 +1,21 @@
 package controller;
 
-import model.Admin;
-import model.Medico;
-import model.Paciente;
-import model.Usuario;
-import repository.UsuarioRepository;
+import model.*;
 import service.UsuarioService;
 import utils.Constantes;
 
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 import exception.SexoException;
 import exception.TipoUserException;
+import utils.enums.TipoUsuarioEnum;
 
 public class UsuarioController {
     private UsuarioService usuarioService;
-    private static UsuarioController instance; //cria a instancia desse controler
+    private static UsuarioController instance;
 
     private UsuarioController() { //privado, para construir em outro lugar do codigo so usando o get.instance
         this.usuarioService = UsuarioService.getInstance();
@@ -34,29 +30,17 @@ public class UsuarioController {
 
 
     public Usuario postUsuario(String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
-                                String dataNascimento,String idTipoUsuario, String crm) throws SQLDataException, IOException, TipoUserException, SexoException {
-                                    
-        Usuario user = null;
+                                String dataNascimento,String strTipoUsuario, String crm){
 
         try{
             ValidacaoController.validarLogin(login);
             ValidacaoController.validarSenha(senha);
-            ValidacaoController.validarTipoUser(idTipoUsuario);
             ValidacaoController.validarSexo(sexo);
 
-            switch (idTipoUsuario) {
-                case Constantes.ID_USER_ADMIN:
-                    user = FactoryAdmin.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_ADMIN);
-                    break;
-                case Constantes.ID_USER_MEDICO:
-                    user = FactoryMedico.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, Constantes.USER_MEDICO, crm);
-                    break;
-                case Constantes.ID_USER_PACIENTE:
-                    user = FactoryPaciente.criaUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idTipoUsuario);
-                    break;
-                    
-            }       
-            return usuarioService.createUsuario(user);
+            int idTipoUsuario = Integer.parseInt(strTipoUsuario);
+            Usuario usuario = UsuarioFactory.criarUsuario(TipoUsuarioEnum.comId(idTipoUsuario),login,senha,nome,cpf,email,sexo,numContato,dataNascimento,crm);
+
+            return usuarioService.createUsuario(usuario);
             
         } catch (TipoUserException e) {
             System.out.println("falha no cadastro: " + e.getMessage());
@@ -74,7 +58,7 @@ public class UsuarioController {
 
     public Usuario getUsuario(String idOpcao, String parametro){
            switch (idOpcao) {
-            case Constantes.ID_OPCAO_1:
+            case "1":
                 return usuarioService.readUsuarioId(Long.valueOf(parametro));
             default :
                 return usuarioService.readUsuario(idOpcao, parametro);
@@ -86,9 +70,13 @@ public class UsuarioController {
     }
 
     
-    public void putUsuario(String idUser, String login, String senha, String nome, String numero, String email) throws SQLDataException, NumberFormatException{
-        usuarioService.updateUsuario(idUser, login, senha, nome,numero, email);
-        
+    public void putUsuario(String idUser, String login, String senha, String nome, String numero, String email) {
+        try {
+            usuarioService.updateUsuario(idUser, login, senha, nome,numero, email);
+        } catch (SQLDataException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     

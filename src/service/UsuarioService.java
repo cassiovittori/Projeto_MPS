@@ -30,70 +30,69 @@ public class UsuarioService {
 //post
     public Usuario createUsuario(Usuario usuario) throws SQLDataException {
 
-        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+      //  try (Connection connection = DriverManager.getConnection(urlBanco)) {
             long idUser = UsuarioRepository.SequenceIdUsuario();
             usuario.setIdUsuario(idUser);
             return UsuarioRepository.saveUsuario(usuario);
-        }catch (Exception e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-        }
-        return usuario;
+      //  }catch (Exception e) {
+         //   System.out.println("Exceção capturada: " + e.getMessage());
+       // }
+       // return usuario;
     }
 //get
     public Usuario readUsuarioId(long idUsuario){
-        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+        //try (Connection connection = DriverManager.getConnection(urlBanco)) {
             return UsuarioRepository.readUsuarioById(idUsuario);
-        }catch (Exception e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-        }
-        return null;
+        //}catch (Exception e) {
+        //  System.out.println("Exceção capturada: " + e.getMessage());
+        //}
+        //return null;
     }
 
 
     public Usuario readUsuario(String idOpcao, String parametro) {
-        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+        //try (Connection connection = DriverManager.getConnection(urlBanco)) {
             return UsuarioRepository.readUsuarioParameter(idOpcao,parametro);
-        }catch (Exception e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-        }
-        return null;
+        //}catch (Exception e) {
+        //    System.out.println("Exceção capturada: " + e.getMessage());
+        //}
+        //return null;
     }
 
     public List<Usuario> readListUsuario() {
-        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+        //try (Connection connection = DriverManager.getConnection(urlBanco)) {
             return UsuarioRepository.readListUsuario();
-        }catch (Exception e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-        }
-        return null;
+        //}catch (Exception e) {
+        //    System.out.println("Exceção capturada: " + e.getMessage());
+        //}
+        //return null;
     }
 //del
     public void deleteUsuario(long idUsuario){
-        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+       // try (Connection connection = DriverManager.getConnection(urlBanco)) {
             UsuarioRepository.deleteUsuarioById(idUsuario);
-        }catch (Exception e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-        }
+        //}catch (Exception e) {
+         //   System.out.println("Exceção capturada: " + e.getMessage());
+        //}
     }
 //put
     public Usuario updateUsuario(String idUser, String login, String senha, String nome, String numero, String email) throws SQLDataException {
     
-        try (Connection connection = DriverManager.getConnection(urlBanco)) {
+        //try (Connection connection = DriverManager.getConnection(urlBanco)) {
              return UsuarioRepository.updateUsuario(idUser, login,senha, nome,numero, email );
-        }catch (Exception e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-        }
-        return null;
-        
+        //}catch (Exception e) {
+        //    System.out.println("Exceção capturada: " + e.getMessage());
+        //}
+        //return null;
     }
 ///////////////////////////////////////////////////////////////////////////////////
     public List<Usuario> getUsuariosArquivo() throws IOException, ClassNotFoundException, SQLException {
-        try {
+        //try {
         carregarUsuariosDoArquivo();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Erro ao obter usuários: " + e.getMessage());
-            return null;
-        }
+        //} catch (IOException | ClassNotFoundException e) {
+        //System.out.println("Erro ao obter usuários: " + e.getMessage());
+        //    return null;
+        //}
 
         return listaUsuarios;
     }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package service;
 
 import java.io.*;
@@ -70,22 +69,3 @@ public class RelatorioService {
         }
     }
 }
-=======
-package service;
-
-import repository.RelatorioAdapterImpl;
-
-public class RelatorioService extends RelatorioTemplate {
-
-    @Override
-    protected void obterDados() {
-
-    }
-
-    @Override
-    protected void gerarRelatorioAdapter() {
-        RelatorioAdapterImpl adaptador = new RelatorioAdapterImpl();
-        adaptador.gerarRelatorio();
-    }
-}
->>>>>>> 2d4cef8d391cbc0695814da56db2830d32e0c157

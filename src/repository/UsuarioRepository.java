@@ -15,26 +15,9 @@ public abstract class UsuarioRepository{
     //TODOS OS SWITCHS COM IDS SÃO PARA CONTROLAR O TIPO RESPONDIDO AVALIAR MUDANÇA DEPOIS
     
     public static Usuario saveUsuario(Usuario usuario){
-        System.out.println("Salvando usuario...");
-        switch (String.valueOf(usuario.getTipoUsuario())) {
-            case Constantes.USER_ADMIN:
-                System.out.println("Usuario: " + usuario.getNome() 
-                    + "de CPF:" + usuario.getCpf() 
-                        + "Salvo com SUCESSO!" + usuario.getTipoUsuario());
-                return new Admin();
-            case Constantes.USER_PACIENTE:
-                System.out.println("Usuario: " + usuario.getNome() 
-                + "de CPF:" + usuario.getCpf() 
-                    + "Salvo com SUCESSO!" + usuario.getTipoUsuario());
-                return new Paciente();
-            case Constantes.USER_MEDICO:
-                System.out.println("Usuario: " + usuario.getNome() 
-                + "de CPF:" + usuario.getCpf() 
-                    + "Salvo com SUCESSO!" + usuario.getTipoUsuario());
-                return new Medico();
-        }
+        System.out.println("Salvando usuario...\n");
+        System.out.println(usuario.toString());
         return null;
-        
     }
 
     public static Usuario readUsuarioById(Long idUsuario){
@@ -82,16 +65,13 @@ public abstract class UsuarioRepository{
     }
 
     public static Usuario updateUsuario(String idUser, String login, String senha, String nome, String numero, String email){
-        System.out.println("Atualizando usuario de ID: " + idUser + "...");
-        System.out.println("Usuario Atualizado!");
-        switch (String.valueOf(idUser)) {
-            case "1":
-                return new Admin();
-            case "2":
-                return new Paciente();
-            case "3":
-                return new Medico();
-        }
+        System.out.println("Buscando usuario de ID: " + idUser + "...");
+        System.out.println("Alterando Login para: " + login);
+        System.out.println("Alterando Senha para: " + senha);
+        System.out.println("Alterando Nome para: " + nome);
+        System.out.println("Alterando Numero para: " + numero);
+        System.out.println("Alterando Email para: " + email);
+        System.out.println("Usuario Atualizado com SUCESSO!");
         return null;
         
     }
