@@ -55,7 +55,7 @@ public abstract class UsuarioRepository{
         System.out.println("Buscando todos os usuarios...");
         System.out.println("Lista:");
         System.out.println("Yurizin da massa");
-        System.out.println("Jonas jonas jonas");
+        System.out.println("Jonas Xoninhas Jonaos");
         System.out.println("Lucas do xadrez");
         System.out.println("Cassilds");
             

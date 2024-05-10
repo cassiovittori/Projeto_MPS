@@ -1,13 +1,9 @@
 package controller;
 
-import java.io.IOException;
-import java.sql.SQLDataException;
-import java.sql.SQLException;
+import exception.TipoRelatorioException;
 import java.util.List;
-
-import exception.SexoException;
-import exception.TipoUserException;
 import model.Consulta;
+import model.Relatorio;
 import model.Usuario;
 
 public class Facade {
@@ -77,4 +73,22 @@ public class Facade {
     public List<Consulta> buscaListaConsulta(){
         return consultaController.getListaConsulta();
     }
+    ////////////////Acesso aos controllers de relatorio//////////////
+
+    public Relatorio adicionarNovoRelatorioCtrl(String relatorioTipo, String titulo, String descricao, String data, String nome) throws TipoRelatorioException{
+       
+        return relatorioController.postRelatorio(relatorioTipo, titulo, descricao, data, nome);
+    
+    }
+
+    public boolean deleteRelatorioCtrl(String titulo){
+        return relatorioController.deleteRelatorio(titulo);
+    }
+
+    public List<Relatorio> searchRelatorioByParam(String tipoParametro, String parametro){
+        
+        return relatorioController.readRelatorioByParametro(tipoParametro, parametro);
+
+    }
 }
+
