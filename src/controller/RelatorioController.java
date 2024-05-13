@@ -2,6 +2,7 @@ package controller;
 
 import exception.TipoRelatorioException;
 import java.util.List;
+import model.BuilderRelatorioCorpo;
 import model.Relatorio;
 import model.RelatorioFactory;
 import service.RelatorioService;
@@ -25,10 +26,10 @@ public class RelatorioController {
     }
 
 
-    public Relatorio postRelatorio(String relatorioTipo, String titulo, String descricao, String data, String nome) throws TipoRelatorioException {
+    public Relatorio postRelatorio(String relatorioTipo, String titulo, String descricao,BuilderRelatorioCorpo corpo, String data, String nome) throws TipoRelatorioException {
         
         int idtipoRelatorio = Integer.parseInt(relatorioTipo);
-        Relatorio relatorio = RelatorioFactory.criarRelatorio(TipoRelatorioEnum.comId(idtipoRelatorio), titulo, descricao, data, nome);
+        Relatorio relatorio = RelatorioFactory.criarRelatorio(TipoRelatorioEnum.comId(idtipoRelatorio), titulo, descricao, corpo, data, nome);
        
         return relatorioservice.criarRelatorio(relatorio);
     }

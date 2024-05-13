@@ -12,12 +12,14 @@ public abstract class Relatorio {
     protected String descricao;
     protected String data;
     protected String autor;
+    protected BuilderRelatorioCorpo corpo;
 
-    public Relatorio(String titulo, String descricao, String data, String autor) {
+    public Relatorio(String titulo, String descricao, String data, String autor, BuilderRelatorioCorpo corpo) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.data = data;
         this.autor = autor;
+        this.corpo = corpo;
     }
 
     public final String gerarRelatorio() {
@@ -66,6 +68,14 @@ public abstract class Relatorio {
 
     public void setData(String data){
         this.data = data;
+    }
+
+    public BuilderRelatorioCorpo getCorpo(){
+        return  corpo;
+    }
+
+    public void setCorpo(BuilderRelatorioCorpo corpo){
+        this.corpo = corpo;
     }
 
 }

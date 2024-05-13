@@ -2,8 +2,8 @@ package model;
 
 public class RelatorioHTML extends Relatorio {
    
-    public RelatorioHTML(String titulo, String descricao, String data, String autor) {
-        super(titulo, descricao, data, autor);
+    public RelatorioHTML(String titulo, String descricao, String data, String autor, BuilderRelatorioCorpo corpo) {
+        super(titulo, descricao, data, autor,corpo);
     }
 
     @Override
@@ -13,7 +13,7 @@ public class RelatorioHTML extends Relatorio {
 
     @Override
     public String gerarCorpo() {
-        return "<h1>Corpo do Relatório HTML</h1>\n";
+        return "<h1>Corpo do Relatório HTML</h1>\n"+ corpo;
     }
 
     @Override

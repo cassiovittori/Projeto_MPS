@@ -2,7 +2,10 @@ package controller;
 
 import exception.TipoRelatorioException;
 import java.util.List;
+import model.BuilderRelatorioCorpo;
 import model.Consulta;
+import model.Medico;
+import model.Paciente;
 import model.Relatorio;
 import model.Usuario;
 
@@ -75,9 +78,19 @@ public class Facade {
     }
     ////////////////Acesso aos controllers de relatorio//////////////
 
-    public Relatorio adicionarNovoRelatorioCtrl(String relatorioTipo, String titulo, String descricao, String data, String nome) throws TipoRelatorioException{
+    public BuilderRelatorioCorpo criarCorpo(boolean  paciente, boolean  medico, boolean consulta, List<Paciente> pacientes, List<Medico> medicos, List<Consulta> consultas){
        
-        return relatorioController.postRelatorio(relatorioTipo, titulo, descricao, data, nome);
+        BuilderRelatorioCorpo corpo = new BuilderRelatorioCorpo();
+        if(paciente) corpo.comPacientes(pacientes);
+        if(medico)  corpo.comMedicos(medicos);
+        if(consulta) corpo.comConsultas(consultas);
+
+        return corpo;
+    }
+
+    public Relatorio adicionarNovoRelatorioCtrl(String relatorioTipo, String titulo, String descricao,BuilderRelatorioCorpo corpo, String data, String nome) throws TipoRelatorioException{
+       
+        return relatorioController.postRelatorio(relatorioTipo, titulo, descricao,corpo, data, nome);
     
     }
 
@@ -90,5 +103,6 @@ public class Facade {
         return relatorioController.readRelatorioByParametro(tipoParametro, parametro);
 
     }
+    
 }
 
