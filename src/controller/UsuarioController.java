@@ -69,6 +69,14 @@ public class UsuarioController {
         return usuarioService.readListUsuario();
     }
 
+    public List<Paciente> getListaPaciente(){
+        return usuarioService.readListPaciente();
+    }
+    
+    public List<Medico> getListaMedico(){
+        return usuarioService.readListaMedico();
+    }
+
     
     public void putUsuario(String idUser, String login, String senha, String nome, String numero, String email) {
         try {

@@ -1,13 +1,12 @@
 package controller;
 
-import java.io.IOException;
-import java.sql.SQLDataException;
-import java.sql.SQLException;
+import exception.TipoRelatorioException;
 import java.util.List;
-
-import exception.SexoException;
-import exception.TipoUserException;
+import model.BuilderRelatorioCorpo;
 import model.Consulta;
+import model.Medico;
+import model.Paciente;
+import model.Relatorio;
 import model.Usuario;
 
 public class Facade {
@@ -55,7 +54,14 @@ public class Facade {
     public List<Usuario> buscaListaUsuario() {
         return usuarioController.getListaUsuario();
     }
+    
+    public List<Medico> buscarListaMedico() {
+        return usuarioController.getListaMedico();
+    }
 
+    public List<Paciente> buscarListaPaciente() {
+        return usuarioController.getListaPaciente();
+    }
 ///////// Acesso aos controllers de consulta ///////////////////////
 
     public Consulta adicionarNovaConsultaCtrl(String crm, String cpf,String data,String motivo){
@@ -77,4 +83,44 @@ public class Facade {
     public List<Consulta> buscaListaConsulta(){
         return consultaController.getListaConsulta();
     }
+
+    
+    ////////////////Acesso aos controllers de relatorio//////////////
+
+    public Relatorio adicionarNovoRelatorioCtrl(String relatorioTipo, String titulo, String descricao,boolean medico, boolean paciente, boolean consulta, String data, String nome) throws TipoRelatorioException{
+       
+         BuilderRelatorioCorpo corpo = new BuilderRelatorioCorpo();
+       
+       
+        if(paciente){  List<Paciente> pacientes = usuarioController.getListaPaciente();
+        
+            corpo.comPacientes(pacientes);
+        
+        } if(medico) {
+        
+            List<Medico> medicos = usuarioController.getListaMedico();
+            corpo.comMedicos(medicos);
+        
+        } if(consulta){
+        
+            List<Consulta> consultas = consultaController.getListaConsulta();
+            corpo.comConsultas(consultas);
+        
+        }
+
+        return relatorioController.postRelatorio(relatorioTipo, titulo, descricao,corpo, data, nome);
+    
+    }
+
+    public boolean deleteRelatorioCtrl(String titulo){
+        return relatorioController.deleteRelatorio(titulo);
+    }
+
+    public List<Relatorio> searchRelatorioByParam(String tipoParametro, String parametro){
+        
+        return relatorioController.readRelatorioByParametro(tipoParametro, parametro);
+
+    }
+    
 }
+
