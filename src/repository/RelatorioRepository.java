@@ -1,3 +1,4 @@
+
 package repository;
 
 import java.util.List;
@@ -16,3 +17,4 @@ public interface RelatorioRepository {
     public void readRelatorioParametros(Relatorio relatorio);
 
 }
+

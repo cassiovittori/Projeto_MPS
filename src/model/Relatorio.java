@@ -1,3 +1,4 @@
+
 package model;
 
 import utils.enums.TipoRelatorioEnum;
@@ -79,3 +80,4 @@ public abstract class Relatorio {
     }
 
 }
+
