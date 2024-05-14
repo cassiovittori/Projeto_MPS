@@ -1,5 +1,5 @@
 package adapters;
 
 public interface ReportAdapter {
-    void addReport(String title, String description, String creationDate, String author);
+    void addReport(String title, String description,BuilderRelatorioCorpo corpo, String creationDate, String author);
 }
