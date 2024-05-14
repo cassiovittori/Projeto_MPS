@@ -21,6 +21,7 @@ public class CriarUsuarioCommand implements Command {
     String strTipoUsuario;
     String crm;
 
+
     public CriarUsuarioCommand(String login, String senha, String nome, String cpf, String email, String sexo, String numContato, String dataNascimento, String strTipoUsuario, String crm) {
         this.fachada = Facade.getInstance();
         this.login = login;
@@ -36,7 +37,7 @@ public class CriarUsuarioCommand implements Command {
     }
 
     @Override
-    public void executar(){
+    public void executar() {
         fachada.adicionarNovoUsuarioCtrl(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, strTipoUsuario, crm);
     }
 }
