@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 import interfaces.IntUsuario;
-import utils.Enums.TipoUsuarioEnum;
+import utils.enums.TipoUsuarioEnum;
 
 public abstract class Usuario implements Serializable, IntUsuario {
 

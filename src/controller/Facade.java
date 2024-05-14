@@ -7,6 +7,7 @@ import java.util.List;
 
 import exception.SexoException;
 import exception.TipoUserException;
+import model.Consulta;
 import model.Usuario;
 
 public class Facade {
@@ -35,42 +36,45 @@ public class Facade {
 
 /////////////Acesso ao controles do usuario/////////////////////////////////////////////////////////////////////////////////////////////////////
     public Usuario adicionarNovoUsuarioCtrl(String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
-                                String dataNascimento,String idtipoUsuario, String crm) throws SQLDataException, TipoUserException, IOException, SexoException {
+                                String dataNascimento,String idtipoUsuario, String crm) {
 
         return usuarioController.postUsuario(login, senha, nome, cpf, email, sexo, numContato, dataNascimento, idtipoUsuario, crm);
    }
 
-   public void atualizaUsuarioCtrl(String idUser, String login, String senha, String nome, String numero, String email) throws SQLDataException, TipoUserException, IOException, SexoException {
+   public void atualizaUsuarioCtrl(String idUser, String login, String senha, String nome, String numero, String email) {
         usuarioController.putUsuario(idUser, login, senha, nome, numero, email);
     }
 
-    public void deletaUsuarioCtrl(String idUser) throws SQLDataException, TipoUserException, IOException, SexoException {
+    public void deletaUsuarioCtrl(String idUser)  {
         usuarioController.delUsuario(idUser);
     }
-    public Usuario buscaUsuario(String idOpcao, String parametro) throws ClassNotFoundException, IOException, SQLException {
+    public Usuario buscaUsuario(String idOpcao, String parametro) {
         return usuarioController.getUsuario(idOpcao, parametro);
     }
 
-    public List<Usuario> buscaListaUsuario() throws ClassNotFoundException, IOException, SQLException {
+    public List<Usuario> buscaListaUsuario() {
         return usuarioController.getListaUsuario();
     }
 
+///////// Acesso aos controllers de consulta ///////////////////////
 
-    /*
-    //Acesso a validação de usuario
-    public void validarLoginDoUsuario(String login) {
-        ValidacaoController.validarLogin(login);
-   }
-
-    public void validarSenhaDoUsuario(String senha) {
-         ValidacaoController.validarSenha(senha);
+    public Consulta adicionarNovaConsultaCtrl(String crm, String cpf,String data,String motivo){
+        return consultaController.postConsulta(crm,cpf,data,motivo);
     }
-    */
 
+    public void atualizarConsultaCtrl(String idConsulta, String data){
+        consultaController.putConsulta(idConsulta, data);
+    }
 
+    public void deletaConsultaCtrl(String idConsulta){
+        consultaController.delConsulta(idConsulta);
+    }
 
-    //public List<Usuario> obterUsuarios() throws ClassNotFoundException, IOException, SQLException {
-     //   return usuarioController.obterUsuarios();
-    //}
+    public Consulta buscaConsulta(String idOpcao, String parametro){
+        return consultaController.getConsulta(idOpcao,parametro);
+    }
 
+    public List<Consulta> buscaListaConsulta(){
+        return consultaController.getListaConsulta();
+    }
 }

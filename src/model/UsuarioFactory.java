@@ -1,7 +1,7 @@
 package model;
 
 import exception.TipoUserException;
-import utils.Enums.TipoUsuarioEnum;
+import utils.enums.TipoUsuarioEnum;
 
 public class UsuarioFactory {
     public static Usuario criarUsuario(TipoUsuarioEnum tipo,String login,String senha,String nome,String cpf,String email,String sexo,String numContato,
