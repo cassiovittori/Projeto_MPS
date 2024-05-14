@@ -1,19 +1,24 @@
+
 package service;
 
-import java.io.*;
-import java.sql.*;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import model.Relatorio;
 import repository.RelatorioRepository;
-import utils.Constantes;
+import repository.RelatorioRepositoryImp;
+//import utils.Constantes;
 
 public class RelatorioService {
-    private List<Relatorio> listaRelatorios;
+
+    private static RelatorioRepository repository;
+   // private String arquivoUsuarios;
+    //private String urlBanco;
     private static RelatorioService instance;
 
     private RelatorioService(){
-        this.listaRelatorios = new ArrayList<>();
+        this.repository = RelatorioRepositoryImp.getInstance();
+     //   this.arquivoUsuarios = Constantes.ARQUIVO_USERS;
+       // this.urlBanco = Constantes.URL_BANCO;
     }
 
     public static RelatorioService getInstance(){
@@ -23,49 +28,29 @@ public class RelatorioService {
         return instance;
     }
 
-    // Métodos CRUD para relatórios
-    public Relatorio createRelatorio(Relatorio relatorio) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(Constantes.URL_BANCO)) {
-            return RelatorioRepository.saveRelatorio(relatorio);
-        } catch (SQLException e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-            throw e;
-        }
+    public static Relatorio criarRelatorio(Relatorio relatorio){
+
+        return repository.saveRelatorio(relatorio);
+
     }
 
-    public Relatorio readRelatorioById(Long idRelatorio) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(Constantes.URL_BANCO)) {
-            return RelatorioRepository.readRelatorioById(idRelatorio);
-        } catch (SQLException e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-            throw e;
-        }
+    public boolean  deleteRelatorio(Relatorio relatorio){
+
+       return repository.deleteRelatorio(relatorio.getTitulo(), relatorio.getData());
+
     }
 
-    public List<Relatorio> readAllRelatorios() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(Constantes.URL_BANCO)) {
-            return RelatorioRepository.readAllRelatorios();
-        } catch (SQLException e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-            throw e;
-        }
+    public Relatorio readRelatorio(String titulo){
+
+        return repository.readRelatorioByTitle(titulo);
     }
 
-    public Relatorio updateRelatorio(Long idRelatorio, String titulo, String descricao) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(Constantes.URL_BANCO)) {
-            return RelatorioRepository.updateRelatorio(idRelatorio, titulo, descricao);
-        } catch (SQLException e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-            throw e;
-        }
+    public List<Relatorio> readRelatorioByParame(String tipoParametro, String Parametro){
+
+       return  repository.readRelatorioByParametro(tipoParametro, Parametro);
+
     }
 
-    public void deleteRelatorio(Long idRelatorio) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(Constantes.URL_BANCO)) {
-            RelatorioRepository.deleteRelatorioById(idRelatorio);
-        } catch (SQLException e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-            throw e;
-        }
-    }
+    
 }
+

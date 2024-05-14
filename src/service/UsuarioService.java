@@ -4,6 +4,8 @@ import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Medico;
+import model.Paciente;
 import model.Usuario;
 import repository.UsuarioRepository;
 import utils.Constantes;
@@ -61,7 +63,31 @@ public class UsuarioService {
 
     public List<Usuario> readListUsuario() {
         //try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            
+            
             return UsuarioRepository.readListUsuario();
+        //}catch (Exception e) {
+        //    System.out.println("Exceção capturada: " + e.getMessage());
+        //}
+        //return null;
+    }
+
+    public List<Medico> readListaMedico() {
+        //try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            
+            
+            return UsuarioRepository.readListaMedico();
+        //}catch (Exception e) {
+        //    System.out.println("Exceção capturada: " + e.getMessage());
+        //}
+        //return null;
+    }
+
+    public List<Paciente> readListPaciente() {
+        //try (Connection connection = DriverManager.getConnection(urlBanco)) {
+            
+            
+            return UsuarioRepository.readListaPaciente();
         //}catch (Exception e) {
         //    System.out.println("Exceção capturada: " + e.getMessage());
         //}

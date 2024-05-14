@@ -3,6 +3,7 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.random.RandomGenerator;
+import javax.print.attribute.standard.Media;
 
 import model.Admin;
 import model.Medico;
@@ -55,11 +56,37 @@ public abstract class UsuarioRepository{
         System.out.println("Buscando todos os usuarios...");
         System.out.println("Lista:");
         System.out.println("Yurizin da massa");
-        System.out.println("Jonas jonas jonas");
+        System.out.println("Jonas Xoninhas Jonaos");
         System.out.println("Lucas do xadrez");
         System.out.println("Cassilds");
             
         List<Usuario> lista = new ArrayList<Usuario>();
+        return lista;
+        
+    }
+
+    public static List<Paciente> readListaPaciente(){
+        System.out.println("Buscando todos os pacientes...");
+        System.out.println("Lista:");
+        System.out.println("Yurizin da massa com dengue");
+        System.out.println("Jonas Xoninhas Jonaos com catapora");
+        System.out.println("Lucas do xadrez com cachumba");
+        System.out.println("Cassilds com bolsonarismo");
+            
+        List<Paciente> lista = new ArrayList<Paciente>();
+        return lista;
+        
+    }
+
+    public static List<Medico> readListaMedico(){
+        System.out.println("Buscando todos os usuarios...");
+        System.out.println("Lista:");
+        System.out.println("Yurizin da massa");
+        System.out.println("Jonas Xoninhas Jonaos");
+        System.out.println("Lucas do xadrez");
+        System.out.println("Cassilds");
+            
+        List<Medico> lista = new ArrayList<Medico>();
         return lista;
         
     }

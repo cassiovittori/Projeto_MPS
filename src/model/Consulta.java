@@ -1,7 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-
 import interfaces.IntConsulta;
 
 public class Consulta implements IntConsulta {
@@ -48,6 +46,16 @@ public class Consulta implements IntConsulta {
     }
     public void setMotivoConsulta(String motivoConsulta) {
         this.motivoConsulta = motivoConsulta;
+    }
+
+    @Override
+    public String toString() {
+        return "consulta:" +
+                "idConsulta=" + idConsulta +
+                ", Medico='" + crmMedico + '\'' +
+                ", Paciente='" + cpfPaciente + '\'' +
+                ", Data='" + dataConsulta + '\'' +
+                ", Motivo='" + motivoConsulta + '\'' +'.';
     }
 
 }
