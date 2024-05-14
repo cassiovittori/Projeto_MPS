@@ -8,7 +8,7 @@ public class RelatorioAdapter implements ReportAdapter {
     }
 
     @Override
-    public void addReport(String title, String description, String creationDate, String author) {
+    public void addReport(String title, String description,BuilderRelatorioCorpo corpo String creationDate, String author) {
         // Supondo que o formato seja PDF
         String reportContent = String.format("Report Title: %s\nDescription: %s\nCreated on: %s\nAuthor: %s",
                 title, description, creationDate, author);
